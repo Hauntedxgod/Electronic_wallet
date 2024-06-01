@@ -23,4 +23,4 @@ create table currency(
     currency    varchar(100)
 );
 
-drop table currency;
+drop table currency
