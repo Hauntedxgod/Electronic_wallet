@@ -31,6 +31,7 @@ public class CardRegistrationController {
     private final ModelMapper modelMapper;
 
 
+
     @Autowired
     public CardRegistrationController(CardService cardService, CardEncoderService encoderService, JWTUtils utils, AuthenticationManager authenticationManager, ModelMapper modelMapper) {
         this.cardService = cardService;
@@ -38,6 +39,7 @@ public class CardRegistrationController {
         this.utils = utils;
         this.authenticationManager = authenticationManager;
         this.modelMapper = modelMapper;
+
     }
 
     @PostMapping("/registration")
@@ -45,10 +47,6 @@ public class CardRegistrationController {
     UserDetails userDetails, BindingResult bindingResult) {
 
         Card card = modelMapper.map(cardDto, Card.class);
-//
-//        cardValidator.validate(cardDto);
-//
-//        cardService.checkErrors(bindingResult);
 
 
         cardService.thisPerson(card, userDetails.getUsername());
@@ -71,12 +69,12 @@ public class CardRegistrationController {
     public ResponseEntity<HttpStatus> transfer(@RequestBody TransferDto transferDto) {
         cardService.transferCardMoney(transferDto.getNumberToCard(), transferDto.getNumberFromCard()
                 , new Trans(transferDto.getTrans().getValue()));
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseEntity.ok(HttpStatus.ACCEPTED);
     }
 
 
     @PostMapping("/deposit")
-    public void depositCard(@RequestBody DepositDto card, Double da) {
+    public ResponseEntity<HttpStatus> depositCard(@RequestBody DepositDto card, Double da) {
 
         Card card1 = cardService.findByNumberCard(card.getNumberCard());
 
@@ -84,6 +82,7 @@ public class CardRegistrationController {
 
         cardService.save(card1);
 
+        return ResponseEntity.ok(HttpStatus.ACCEPTED);
     }
 
 }

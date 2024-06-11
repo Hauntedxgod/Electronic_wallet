@@ -26,10 +26,11 @@ public class Person {
     private Long id;
 
 
+    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
     @Column(name = "name", unique = true)
     private String name;
 
-    @Min(value = 1 , message = "Age should be more than 1")
+    @Min(value = 14 , message = "Age should be more than 1")
     @Column(name = "age")
     private Integer age;
 

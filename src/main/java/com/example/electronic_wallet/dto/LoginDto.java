@@ -1,7 +1,5 @@
 package com.example.electronic_wallet.dto;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,9 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LoginDto {
 
-
     private String username;
-
 
     private String password;
 
