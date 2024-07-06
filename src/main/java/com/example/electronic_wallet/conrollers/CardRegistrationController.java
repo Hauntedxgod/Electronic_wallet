@@ -6,6 +6,7 @@ import com.example.electronic_wallet.models.Card;
 import com.example.electronic_wallet.security.PersonDetails;
 import com.example.electronic_wallet.sevice.CardEncoderService;
 import com.example.electronic_wallet.sevice.CardService;
+import com.example.electronic_wallet.sevice.CurrencyService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,8 @@ public class CardRegistrationController {
     private final CardService cardService;
     private final CardEncoderService encoderService;
 
+    private final CurrencyService currencyService;
+
 
     private final JWTUtils utils;
     private final AuthenticationManager authenticationManager;
@@ -33,9 +36,10 @@ public class CardRegistrationController {
 
 
     @Autowired
-    public CardRegistrationController(CardService cardService, CardEncoderService encoderService, JWTUtils utils, AuthenticationManager authenticationManager, ModelMapper modelMapper) {
+    public CardRegistrationController(CardService cardService, CardEncoderService encoderService, CurrencyService currencyService, JWTUtils utils, AuthenticationManager authenticationManager, ModelMapper modelMapper) {
         this.cardService = cardService;
         this.encoderService = encoderService;
+        this.currencyService = currencyService;
         this.utils = utils;
         this.authenticationManager = authenticationManager;
         this.modelMapper = modelMapper;
@@ -67,8 +71,10 @@ public class CardRegistrationController {
     @PostMapping("/transfer")
     @ResponseBody
     public ResponseEntity<HttpStatus> transfer(@RequestBody TransferDto transferDto) {
-        cardService.transferCardMoney(transferDto.getNumberToCard(), transferDto.getNumberFromCard()
-                , new Trans(transferDto.getTrans().getValue()));
+        cardService.transferCardMoney(transferDto.getNumberToCard(),
+                transferDto.getNumberFromCard(),
+                new Trans(transferDto.getTrans().getValue()),
+                transferDto.getCurrency());
         return ResponseEntity.ok(HttpStatus.ACCEPTED);
     }
 

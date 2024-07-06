@@ -8,10 +8,10 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @Builder
-@Value
+@NoArgsConstructor
 public class CurrencyDto {
 
-    String currency;
+    public String currency;
 
-    BigDecimal rate;
+    public BigDecimal rate;
 }

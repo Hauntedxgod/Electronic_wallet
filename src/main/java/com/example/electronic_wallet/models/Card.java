@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.cglib.core.Local;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -42,6 +43,7 @@ public class Card {
 
     @Column(name = "this_Person")
     private String thisPerson;
+
 
 //    @Column()
 //    private LocalDateTime createdAt;

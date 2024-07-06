@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.checkerframework.checker.units.qual.C;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -24,4 +26,7 @@ public class CurrencyRate {
 
     @Column(name = "price")
     private BigDecimal rate;
+
+    @Column(name = "local")
+    private LocalDateTime localDateTime;
 }

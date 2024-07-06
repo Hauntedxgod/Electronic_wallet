@@ -1,12 +1,16 @@
 package com.example.electronic_wallet.sevice;
 
 import com.example.electronic_wallet.dto.BankDto;
+import com.example.electronic_wallet.dto.CurrencyDto;
 import com.example.electronic_wallet.dto.Trans;
 import com.example.electronic_wallet.models.Card;
+import com.example.electronic_wallet.models.CurrencyRate;
 import com.example.electronic_wallet.models.Transaction;
 import com.example.electronic_wallet.repositories.CardsRepository;
+import com.example.electronic_wallet.repositories.CurrencyRateRepository;
 import com.example.electronic_wallet.repositories.TransactionRepository;
 import com.example.electronic_wallet.security.PersonDetails;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class CardService {
@@ -24,12 +29,18 @@ public class CardService {
 
     private final TransactionRepository transactionRepository;
 
+    private final CurrencyService currencyService;
+
+    private final CurrencyRateRepository currencyRateRepository;
+
 
     @Autowired
-    public CardService(CardsRepository cardsRepository, ModelMapper modelMapper, TransactionRepository transactionRepository) {
+    public CardService(CardsRepository cardsRepository, ModelMapper modelMapper, TransactionRepository transactionRepository, CurrencyService currencyService, CurrencyRateRepository currencyRateRepository) {
         this.cardsRepository = cardsRepository;
         this.modelMapper = modelMapper;
         this.transactionRepository = transactionRepository;
+        this.currencyService = currencyService;
+        this.currencyRateRepository = currencyRateRepository;
     }
 
     public void thisPerson(Card card , String created){
@@ -58,9 +69,10 @@ public class CardService {
     }
 
 
-    public void transferCardMoney(String numberToCard , String numberFromCard , Trans balance){
+    public void transferCardMoney(String numberToCard, String numberFromCard, Trans balance, String nameCurrency) {
 
         Transaction transaction = new Transaction();
+        Random random = new Random();
 
         Card sender = cardsRepository.findByNumberCard(numberFromCard).orElseThrow();
         Card rec = cardsRepository.findByNumberCard(numberToCard).orElseThrow();
@@ -75,7 +87,15 @@ public class CardService {
         transaction.setNumberCardTo(rec.getNumberCard());
         transaction.setPersonToName(rec.getThisPerson());
         transaction.setCreatedAt(LocalDateTime.now());
+
+        for (int i = random.nextInt(2000); i < currencyRateRepository.findByCurrency(nameCurrency).size(); i++) {
+            CurrencyRate currencyRates = modelMapper.map(currencyRateRepository.findByCurrency(nameCurrency).get(i), CurrencyRate.class);
+            transaction.setCurrency(currencyRates.getCurrency());
+            transaction.setCourse(currencyRates.getRate());
+            break;
+        }
         transactionRepository.save(transaction);
+
 
         sender.setBalance(senders);
         rec.setBalance(recs);

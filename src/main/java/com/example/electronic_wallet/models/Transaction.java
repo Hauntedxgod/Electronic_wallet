@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -35,6 +36,12 @@ public class Transaction {
 
     @Column(name = "transaction_time")
     private LocalDateTime createdAt;
+
+    @Column(name = "currency")
+    private String currency;
+
+    @Column(name = "course")
+    private BigDecimal course;
 
 
 }
