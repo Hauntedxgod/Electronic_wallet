@@ -29,17 +29,15 @@ public class CardService {
 
     private final TransactionRepository transactionRepository;
 
-    private final CurrencyService currencyService;
 
     private final CurrencyRateRepository currencyRateRepository;
 
 
     @Autowired
-    public CardService(CardsRepository cardsRepository, ModelMapper modelMapper, TransactionRepository transactionRepository, CurrencyService currencyService, CurrencyRateRepository currencyRateRepository) {
+    public CardService(CardsRepository cardsRepository, ModelMapper modelMapper, TransactionRepository transactionRepository,  CurrencyRateRepository currencyRateRepository) {
         this.cardsRepository = cardsRepository;
         this.modelMapper = modelMapper;
         this.transactionRepository = transactionRepository;
-        this.currencyService = currencyService;
         this.currencyRateRepository = currencyRateRepository;
     }
 
@@ -47,11 +45,6 @@ public class CardService {
         card.setThisPerson(created);
         save(card);
     }
-
-    public Card findByPhone(String number){
-        return cardsRepository.findByPhoneNumber(number).orElseThrow();
-    }
-
     public Card findByNumberCard(String number){
         return cardsRepository.findByNumberCard(number).orElseThrow();
     }

@@ -41,8 +41,4 @@ public class Person {
     @Column(name = "password")
     private String password;
 
-
-//
-//    @OneToMany()
-//    private List<Card> cards;
 }

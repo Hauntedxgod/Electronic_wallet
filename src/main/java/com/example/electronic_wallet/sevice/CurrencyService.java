@@ -38,14 +38,5 @@ public class CurrencyService {
         }
     }
 
-//    public void currencyGet(ArrayList<CurrencyDto> currencyDto ){
-//        for (int i = 0; i  < currencyDto.size() ; i++) {
-//            Transaction transaction = new Transaction();
-//            CurrencyRate currencyRate = modelMapper.map(currencyDto.get(i), CurrencyRate.class);
-//            currencyRateRepository.findByCurrency(transaction.getCurrency());
-//            transaction.setCurrency(String.valueOf(currencyRate.getRate()));
-//            transactionRepository.save(transaction);
-//        }
-//    }
 
 }

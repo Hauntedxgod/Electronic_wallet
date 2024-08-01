@@ -14,5 +14,4 @@ public interface CurrencyRateRepository  extends JpaRepository<CurrencyRate , Lo
 
     ArrayList<CurrencyRate> findByCurrency (String a);
 
-//    Optional<CurrencyRate> findByLocalDateTime_Date(LocalDateTime localDateTime);
 }

@@ -45,13 +45,4 @@ public class Card {
     private String thisPerson;
 
 
-//    @Column()
-//    private LocalDateTime createdAt;
-//
-//    @Column()
-//    private LocalDateTime closedAt;
-//
-//    @ManyToOne
-//    @JoinColumn()
-//    private Person owner;
 }

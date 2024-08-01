@@ -26,22 +26,15 @@ public class CardRegistrationController {
     private final CardService cardService;
     private final CardEncoderService encoderService;
 
-    private final CurrencyService currencyService;
 
-
-    private final JWTUtils utils;
-    private final AuthenticationManager authenticationManager;
     private final ModelMapper modelMapper;
 
 
 
     @Autowired
-    public CardRegistrationController(CardService cardService, CardEncoderService encoderService, CurrencyService currencyService, JWTUtils utils, AuthenticationManager authenticationManager, ModelMapper modelMapper) {
+    public CardRegistrationController(CardService cardService, CardEncoderService encoderService, ModelMapper modelMapper) {
         this.cardService = cardService;
         this.encoderService = encoderService;
-        this.currencyService = currencyService;
-        this.utils = utils;
-        this.authenticationManager = authenticationManager;
         this.modelMapper = modelMapper;
 
     }
