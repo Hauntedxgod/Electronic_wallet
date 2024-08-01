@@ -19,13 +19,11 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
+
     public Person findByName(String name){
         return personRepository.findByName(name).orElseThrow(PersonNotFoundException::new);
     }
 
-    public void save(Person person){
-        personRepository.save(person);
-    }
 
     public Person getMyPerson(PersonDetails personDetails) {
         return personRepository.findByName(personDetails.getUsername()).orElseThrow(PersonNotFoundException::new);

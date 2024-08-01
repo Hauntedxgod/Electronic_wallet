@@ -25,11 +25,7 @@ public class CardRegistrationController {
 
     private final CardService cardService;
     private final CardEncoderService encoderService;
-
-
     private final ModelMapper modelMapper;
-
-
 
     @Autowired
     public CardRegistrationController(CardService cardService, CardEncoderService encoderService, ModelMapper modelMapper) {
@@ -39,9 +35,10 @@ public class CardRegistrationController {
 
     }
 
+
     @PostMapping("/registration")
     public ResponseEntity<HttpStatus> CardRegistration(@RequestBody CardDto cardDto, @AuthenticationPrincipal
-    UserDetails userDetails, BindingResult bindingResult) {
+    UserDetails userDetails) {
 
         Card card = modelMapper.map(cardDto, Card.class);
 
@@ -54,6 +51,7 @@ public class CardRegistrationController {
 
         return ResponseEntity.ok(HttpStatus.OK);
     }
+
 
     @GetMapping("/balance")
     public List<BankDto> balanceCard(@AuthenticationPrincipal PersonDetails personDetails) {

@@ -24,12 +24,8 @@ import java.util.Random;
 public class CardService {
 
     private final CardsRepository cardsRepository;
-
     private final ModelMapper modelMapper;
-
     private final TransactionRepository transactionRepository;
-
-
     private final CurrencyRateRepository currencyRateRepository;
 
 
@@ -45,9 +41,12 @@ public class CardService {
         card.setThisPerson(created);
         save(card);
     }
+
+
     public Card findByNumberCard(String number){
         return cardsRepository.findByNumberCard(number).orElseThrow();
     }
+
 
     public void save(Card card){
         cardsRepository.save(card);
@@ -88,7 +87,6 @@ public class CardService {
             break;
         }
         transactionRepository.save(transaction);
-
 
         sender.setBalance(senders);
         rec.setBalance(recs);

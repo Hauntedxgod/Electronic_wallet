@@ -26,12 +26,9 @@ import java.util.Map;
 @RequestMapping("/reg")
 public class PersonRegistrationController {
     private final PersonService personService;
-
     private final PersonEncoderService personServiceEncoder;
     private final PersonValidator validation;
-
     private final JWTUtils utils;
-
     private final AuthenticationManager authenticationManager;
     private final ModelMapper modelMapper;
 
@@ -84,6 +81,7 @@ public class PersonRegistrationController {
 
         return Map.of("jwt - token", token, "name", personToken.getName(), "age", personToken.getAge());
     }
+
 
     @GetMapping("/showAboutMe")
     public ShowMeDto getMyPerson(@AuthenticationPrincipal PersonDetails personDetails) {

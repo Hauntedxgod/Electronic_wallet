@@ -17,16 +17,11 @@ import java.util.ArrayList;
 public class CurrencyService {
 
     private final CurrencyRateRepository currencyRateRepository;
-
-    private final TransactionRepository transactionRepository;
-
     private final ModelMapper modelMapper;
-    public CurrencyService(CurrencyRateRepository currencyRateRepository, TransactionRepository transactionRepository, ModelMapper modelMapper) {
+    public CurrencyService(CurrencyRateRepository currencyRateRepository,ModelMapper modelMapper) {
         this.currencyRateRepository = currencyRateRepository;
-        this.transactionRepository = transactionRepository;
         this.modelMapper = modelMapper;
     }
-
 
 
     public void currencySave(ArrayList<CurrencyDto> currencyDto){

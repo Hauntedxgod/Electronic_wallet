@@ -13,7 +13,6 @@ import java.util.Optional;
 public interface CardsRepository extends JpaRepository<Card , Long> {
 
     List<Card> findByThisPerson(String t);
-
     Optional<Card> findByNumberCard(String a);
 
 }

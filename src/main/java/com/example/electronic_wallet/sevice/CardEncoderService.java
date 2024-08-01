@@ -14,16 +14,12 @@ import java.util.Random;
 public class CardEncoderService {
 
     private final CardsRepository cardsRepository;
-
-    private final CardService cardService;
-
     private final PasswordEncoder passwordEncoder;
 
 
     @Autowired
-    public CardEncoderService(CardsRepository cardsRepository, CardService cardService, PasswordEncoder passwordEncoder) {
+    public CardEncoderService(CardsRepository cardsRepository, PasswordEncoder passwordEncoder) {
         this.cardsRepository = cardsRepository;
-        this.cardService = cardService;
         this.passwordEncoder = passwordEncoder;
     }
 

@@ -21,10 +21,12 @@ public class PersonValidator implements Validator {
         this.service = service;
     }
 
+
     @Override
     public boolean supports(Class<?> clazz) {
         return Person.class.equals(clazz);
     }
+
 
     @Override
     public void validate(Object target, Errors errors) {

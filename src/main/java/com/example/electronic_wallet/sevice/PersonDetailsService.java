@@ -15,7 +15,6 @@ import java.util.Optional;
 public class PersonDetailsService implements UserDetailsService {
     private final PersonService personService;
 
-
     @Autowired
     public PersonDetailsService(PersonService personService) {
         this.personService = personService;

@@ -26,7 +26,6 @@ import java.util.List;
 @Component
 public class KafkaListenersExample {
 
-
     private final ObjectMapper objectMapper;
     private final CurrencyService currencyService;
 
